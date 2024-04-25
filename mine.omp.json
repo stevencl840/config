@@ -1,0 +1,65 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 2,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "template": "{{ reason .Code }}❌ "
+        },
+        {
+          "type": "root",
+          "style": "plain",
+          "foreground": "#ff0000",
+          "template": "# "
+        },
+        {
+          "type": "session",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "template": "{{ .UserName }}@{{ .HostName }} "
+        },
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "background": "#007ACC",
+          "template": "<transparent>\ue0b0</> {{ .Path }} ",
+          "properties": {
+            "folder_icon": "\u2026",
+            "folder_separator_icon": " \ue0b1 ",
+            "max_depth": 3,
+            "style": "agnoster_short"
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "foreground": "#ffffff",
+          "background": "#007ACC",
+          "template": "{{ .HEAD }}{{ if and (eq .Ahead 0) (eq .Behind 0) }} \u2261{{end}}{{ if gt .Ahead 0 }} \u2191{{.Ahead}}{{end}}{{ if gt .Behind 0 }} \u2193{{.Behind}}{{end}} {{ if .Working.Changed }}+{{ .Working.Added }} ~{{ .Working.Modified }} -{{ .Working.Deleted }} {{ end }}",
+          "properties": {
+            "cherry_pick_icon": "✓ ",
+            "commit_icon": "\u25b7 ",
+            "fetch_status": true,
+            "merge_icon": "\u25f4 ",
+            "no_commits_icon": "[no commits]",
+            "rebase_icon": "\u2c62 ",
+            "tag_icon": "\u25b6 "
+          }
+        },
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#007ACC",
+          "template": "\ue0b0 "
+        }
+      ]
+    }
+  ]
+}
