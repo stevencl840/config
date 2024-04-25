@@ -1,6 +1,6 @@
 Import-Module posh-git
 oh-my-posh init pwsh --config 'c:\users\steve\mine.omp.json' | Invoke-Expression
-$repo='D:\repo'
+$repo = $env:REPO
 
 function repo { Set-Location $repo }
 
@@ -22,7 +22,7 @@ function gcob {
     git checkout -b "$branch"
 }
 
-function gcom{
+function gcom {
     git checkout main
     git pull
 }
@@ -35,6 +35,10 @@ function gpfo {
     $branch = $args[0]
     git push -f origin "$branch"
 
+}
+
+function gs {
+    git status
 }
 
 function gpwr {
@@ -96,7 +100,7 @@ Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+t' -PSReadlineChordReverseHistory 'Ctrl+r'
 
-$commandOverride = [ScriptBlock]{ param($Location) Write-Host $Locoation }
+$commandOverride = [ScriptBlock] { param($Location) Write-Host $Locoation }
 
 Set-PsFzfOption -AltCCommand $commandOverride
 
