@@ -12,6 +12,11 @@ function ghwaRepo { Set-Location $ghwaRepo }
 
 function glsb { 
     $branchName = git branch --sort=-committerdate | invoke-fzf
+
+    if ($null -eq $branchName) {
+        return;
+    }
+
     $branchName.SubString(2) | Set-Clipboard
 }
     
@@ -96,7 +101,12 @@ $commandOverride = [ScriptBlock] { param($Location) Write-Host $Location }
 Set-PsFzfOption -AltCCommand $commandOverride
 
 function fzf {
-    Invoke-fzf | Set-Clipboard
+    $value = Invoke-fzf 
+
+    if ($null -eq $value) {
+        return;
+    }
+    $value | Set-Clipboard
 }
 
 function dps {
