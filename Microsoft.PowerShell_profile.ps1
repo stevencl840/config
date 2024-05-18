@@ -1,7 +1,7 @@
 Import-Module posh-git
 
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\agnoster.minimal.omp.json" | Invoke-Expression
-$repo = 'D:\repo'
+$repo = $env:REPO
 $odRepo = $repo + '\OctopusDeploy'
 $ghwaRepo = $repo + '\GitHubWebApp'
 
